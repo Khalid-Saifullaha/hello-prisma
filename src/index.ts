@@ -40,15 +40,38 @@ async function main() {
 
   // console.log(updatedUser);
 
-  const updateProfilePhoto = await prisma.user.updateManyAndReturn({
+  // const updateProfilePhoto = await prisma.user.updateManyAndReturn({
+  //   where: {
+  //     profilePhoto: null,
+  //   },
+  //   data: {
+  //     profilePhoto: "https://khalid.cpm/defult.png",
+  //   },
+  // });
+  // console.log(updateProfilePhoto);
+
+  // Delete  users
+  // const deleteUser = await prisma.user.delete({
+  //   where: {
+  //     id: 4,
+  //   },
+  // });
+
+  // console.log(deleteUser);
+
+  // Delete multiple users by condition
+  const deleteUser = await prisma.user.deleteMany({
     where: {
-      profilePhoto: null,
-    },
-    data: {
-      profilePhoto: "https://khalid.cpm/defult.png",
+      id: {
+        lt: 3,
+      },
     },
   });
-  console.log(updateProfilePhoto);
+
+  console.log(deleteUser);
+
+  // Retrive all data from DB
+  console.log(await prisma.user.findMany());
 }
 
 main();
