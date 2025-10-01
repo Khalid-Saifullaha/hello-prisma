@@ -7,7 +7,7 @@ async function main() {
   //   data: {
   //     name: "Khalid Saifullaha",
   //     email: "khalid@gmail.com",
-  //     profilePhoto: "https://khalid.cpm/khalid.png",
+  //     // profilePhoto: "https://khalid.cpm/khalid.png",
   //   },
   // });
   // console.log(result);
@@ -19,12 +19,36 @@ async function main() {
   // });
   // console.log(usersData);
 
-  const findUserById = await prisma.user.findUnique({
+  // const usersData = await prisma.user.findMany();
+  // console.log(usersData);
+
+  //   const findUserById = await prisma.user.findUnique({
+  //     where: {
+  //       id: 2,
+  //     },
+  //   });
+  //   console.log(findUserById);
+
+  // const updatedUser = await prisma.user.update({
+  //   where: {
+  //     id: 1,
+  //   },
+  //   data: {
+  //     name: "Khalid",
+  //   },
+  // });
+
+  // console.log(updatedUser);
+
+  const updateProfilePhoto = await prisma.user.updateManyAndReturn({
     where: {
-      id: 2,
+      profilePhoto: null,
+    },
+    data: {
+      profilePhoto: "https://khalid.cpm/defult.png",
     },
   });
-  console.log(findUserById);
+  console.log(updateProfilePhoto);
 }
 
 main();
